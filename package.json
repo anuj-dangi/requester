@@ -1,0 +1,12 @@
+{
+  "name": "requester-bot",
+  "version": "1.0.0",
+  "description": "Always-on socket.io bot",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "socket.io-client": "^4.7.5"
+  }
+}

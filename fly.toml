@@ -1,0 +1,28 @@
+# fly.toml - Fly.io configuration for requester bot
+
+app = "requester-bot"        # change this to your unique app name on fly.io
+primary_region = "sin"       # Singapore (closest to India) — change if needed
+# Other regions: bom (Mumbai), lax, iad, fra, etc.
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+
+# No HTTP server needed — this is a pure bot (worker)
+# So we disable the default http service
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 1
+    soft_limit = 1
+
+# Keep the machine always running (never auto-stop)
+[machines]
+  [machines.guest]
+    cpu_kind = "shared"
+    cpus = 1
+    memory_mb = 256        # 256MB is enough for a socket bot
